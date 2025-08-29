@@ -1,0 +1,2 @@
+g++ driver.cpp stack.cpp -o programa.exe
+./programa
