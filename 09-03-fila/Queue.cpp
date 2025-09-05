@@ -33,3 +33,46 @@ void Queue::append(QueueEntry x){
   p->nextNode = NULL; // define que este nó não aponta para nenhum próximo (é o último)
   tail = p;           // atualiza o ponteiro de fim (tail) para o novo nó
 }
+
+void Queue::serve(QueueEntry &x){
+  if (empty()) abort(); // Se a fila estiver vazia, encerra o programa
+
+  x = head->entry; // Copia o valor armazenado no primeiro nó (head)
+  QueuePointer p = head; // Cria um ponteiro auxiliar que aponta para o nó que será removido
+  head = head->nextNode; // Atualiza o ponteiro de início (head) para o próximo nó da fila
+  delete p; // Libera a memória do nó antigo que foi removido
+
+  if(head == NULL) tail = NULL; // Se a fila ficou vazia após a remoção, atualiza também o tail para NULL (fila está totalmente vazia)
+}
+
+int Queue::size(){
+  QueuePointer p = head;
+  int s = 0;
+  while(p != NULL){
+    s++;
+    p = p->nextNode;
+  }
+  return s;
+}
+
+void Queue::clear(){
+  QueuePointer p;
+  while (head != NULL){
+    p = head;
+    head = head->nextNode;
+    delete p;
+  }
+  tail = NULL;
+}
+
+void Queue::getFront(QueueEntry &x){
+  if(empty()) abort();
+
+  x = head->entry;
+}
+
+void Queue::getRear(QueueEntry &x){
+  if(empty()) abort();
+
+  x = tail->entry;
+}

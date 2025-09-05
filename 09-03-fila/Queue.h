@@ -25,9 +25,10 @@ public:
   bool full(); //cheio
   void append(QueueEntry x); //acrescenta um novo elemento no final da fila
   void serve(QueueEntry &x); //remove o elemento do inicio da fila
-  void front(QueueEntry &x); //passa um copia do primeiro elemento da fila
-  void rear(QueueEntry &x); //passa uma copia do ultimo elemento da fila
+  void getFront(QueueEntry &x); //passa um copia do primeiro elemento da fila
+  void getRear(QueueEntry &x); //passa uma copia do ultimo elemento da fila
   void clear(); //apaga tudo
+  int size();
 };
 
 #endif
