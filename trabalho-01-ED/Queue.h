@@ -1,10 +1,18 @@
-//arquivo de declaracao
-//fila dinamica (encadeada)
-//FIFO
+#include <string>
+using namespace std;
+
+struct Cards {
+  string model;
+  int curb_weight;
+  int engine_size;
+  int horse_power;
+  int price;
+  string group;
+};
 
 #ifndef QUEUE_H
 #define QUEUE_H
-typedef int QueueEntry;
+typedef Cards QueueEntry;
 
 class Queue{
 private:
@@ -17,8 +25,6 @@ private:
 
   QueuePointer head; //informar primeiro elemento da estrutura
   QueuePointer tail; //informar ultimo elemento da estrutura
-
-  int count; //contador
 
 public:
   Queue(); //construtor
