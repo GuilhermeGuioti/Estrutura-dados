@@ -4,7 +4,6 @@ using namespace std;
 
 Queue::Queue(){
   head = tail = NULL;
-  count = 0; //count inicia zerado
 }
 
 Queue::~Queue(){
@@ -33,8 +32,6 @@ void Queue::append(QueueEntry x){
   p->entry = x;       // armazena o valor no novo nó
   p->nextNode = NULL; // define que este nó não aponta para nenhum próximo (é o último)
   tail = p;           // atualiza o ponteiro de fim (tail) para o novo nó
-
-  count++; //adiciona um no contador
 }
 
 void Queue::serve(QueueEntry &x){
@@ -46,8 +43,6 @@ void Queue::serve(QueueEntry &x){
   delete p; // Libera a memória do nó antigo que foi removido
 
   if(head == NULL) tail = NULL; // Se a fila ficou vazia após a remoção, atualiza também o tail para NULL (fila está totalmente vazia)
-
-  count--; //remove um do contador
 }
 
 int Queue::size(){
@@ -58,8 +53,6 @@ int Queue::size(){
     p = p->nextNode;
   }
   return s;
-
-  // return count;
 }
 
 void Queue::clear(){
@@ -70,8 +63,6 @@ void Queue::clear(){
     delete p;
   }
   tail = NULL;
-
-  count = 0;
 }
 
 void Queue::getFront(QueueEntry &x){
