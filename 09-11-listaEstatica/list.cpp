@@ -52,3 +52,19 @@ void List::remove(int p, listEntry &x){
   
   count--;
 }
+
+void List::retrieve(int p, listEntry &x){
+  if(empty()) abort();
+
+  if(p < 1 || p > count) abort();
+
+  x = entry[p];
+}
+
+void List::replace(int p, listEntry x){
+  if(empty()) abort();
+
+  if(p < 1 || p > count) abort();
+
+  entry[p] = x;
+}

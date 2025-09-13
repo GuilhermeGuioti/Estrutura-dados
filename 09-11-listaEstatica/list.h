@@ -20,8 +20,8 @@ class List{
     void remove(int p, listEntry &x);
     int size();
     void clear();
-    void retrieve();
-    void replace();  
+    void retrieve(int p, listEntry &x);
+    void replace(int p, listEntry x);  
 };
 
 #endif
