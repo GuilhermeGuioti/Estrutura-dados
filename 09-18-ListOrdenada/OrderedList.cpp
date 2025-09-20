@@ -26,7 +26,7 @@ bool OrderedList::full(){
 
 void OrderedList::insert(ListEntry x){
   ListPointer p = head;
-  ListPointer q;
+  ListPointer newNode;
 
   sentinel->entry = x;
 
@@ -34,18 +34,68 @@ void OrderedList::insert(ListEntry x){
     p = p->nextNode;
   }
 
-  q = new ListNode;
-  if (q == NULL) abort();
+  newNode = new ListNode;
+  if (newNode == NULL) abort();
 
   if(p == sentinel){
-    p->nextNode = q;
-    sentinel = q;
+    p->nextNode = newNode;
+    sentinel = newNode;
   }
   else{
-    *q = *p;
+    *newNode = *p;
     p->entry = x;
-    p->nextNode = q;
+    p->nextNode = newNode;
   }
 
   count++;
+}
+
+void OrderedList::remove(ListEntry x){
+  ListPointer p = NULL;
+  ListPointer q = head;
+
+  sentinel->entry = x;
+
+  while(q->entry < x){
+    p = q;
+    q = q->nextNode;
+  } 
+
+  if(q->entry != x || q == sentinel) abort();
+
+  if(q == head){
+    head = head->nextNode;
+  }
+  else{
+    p->nextNode = q->nextNode;
+    delete q;
+  }
+
+  count--;
+}
+
+int OrderedList::search(ListEntry x){
+  ListPointer q = head;
+  int posicao = 1;
+
+  sentinel->entry = x;
+
+  while(q->entry < x){
+    q = q->nextNode;
+    posicao++;
+  }
+
+  if(q->entry != x || q == sentinel) return 0;
+
+  return posicao;
+}
+
+void OrderedList::clear(){
+  ListPointer q = head;
+
+  while(head != sentinel){
+    q = head;
+    head = head->nextNode;
+    delete q;
+  }
 }

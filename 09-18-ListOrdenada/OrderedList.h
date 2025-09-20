@@ -24,6 +24,7 @@ class OrderedList{
     void insert(ListEntry x);
     void remove(ListEntry x);
     void clear();
+    int search(ListEntry x);
 };
 
 #endif
