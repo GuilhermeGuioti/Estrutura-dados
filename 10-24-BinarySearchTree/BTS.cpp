@@ -123,7 +123,7 @@ void BinarySearchTree::insert(TreeEntry x){
     p = q;
     
     if(x < q->entry) q = q->leftNode;
-    if(x > q->entry) q = q->rightNode;
+    if(x >= q->entry) q = q->rightNode;
   }
 
   //Alocação dinâmica e inicilização do novo nó
@@ -138,6 +138,39 @@ void BinarySearchTree::insert(TreeEntry x){
   } 
   else{
     if(x < p->entry) p->leftNode = newNode;
-    if(x > p->entry) p->rightNode = newNode;
+    if(x >= p->entry) p->rightNode = newNode;
   }
+}
+
+TreeEntry BinarySearchTree::minimum(){
+  TreePointer t = root;
+  if(root == NULL){
+    cout << "Arvore Vazia!" << endl;
+    abort(); // return INT_MIN
+  }
+
+  while(t->leftNode != NULL) t = t->leftNode;
+  return t->entry;
+}
+
+TreeEntry BinarySearchTree::maximum(){
+  TreePointer t = root;
+  if(t == NULL){
+    cout << "Arvore Vazia!" << endl;
+    abort(); // return INT_MAX
+  } 
+
+  while(t->rightNode != NULL) t = t->rightNode;
+  return t->entry;
+}
+
+bool BinarySearchTree::search(TreeEntry x){
+  TreePointer t = root;
+
+  while(t->entry != x && t != NULL){
+    if(t->entry < x) t = t->leftNode;
+    if(t->entry >= x) t = t->rightNode;
+  }
+
+  return t != NULL;
 }

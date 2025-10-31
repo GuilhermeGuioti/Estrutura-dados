@@ -14,9 +14,12 @@ class BinarySearchTree{
     int nodes();
     int leaves();
     int height();
-    void preOrdem();
     void clear();
+    void preOrdem();
     void insert(TreeEntry x);
+    TreeEntry minimum();
+    TreeEntry maximum();
+    bool search(TreeEntry x);
 
   private:
     struct TreeNode;
