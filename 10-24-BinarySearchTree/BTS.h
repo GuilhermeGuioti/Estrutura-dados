@@ -20,6 +20,7 @@ class BinarySearchTree{
     TreeEntry minimum();
     TreeEntry maximum();
     bool search(TreeEntry x);
+    bool remove(TreeEntry x);
 
   private:
     struct TreeNode;
@@ -38,6 +39,8 @@ class BinarySearchTree{
     int height(TreePointer &t);
     void clear(TreePointer &t);
     void preOrdem(TreePointer &t);
+    bool remove(TreeEntry x, TreePointer &p);
+    void removeMin(TreePointer &q, TreePointer &r);
 };
 
 #endif

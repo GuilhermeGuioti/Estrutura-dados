@@ -174,3 +174,43 @@ bool BinarySearchTree::search(TreeEntry x){
 
   return t != NULL;
 }
+
+bool BinarySearchTree::remove(TreeEntry x){
+  return remove(x, root);
+}
+
+bool BinarySearchTree::remove(TreeEntry x, TreePointer &p){
+  if(p == NULL) return false; //não encontrei o nó na árvore
+
+  if(x < p->entry) remove(x, p->leftNode); //x < do que p->entry - tentar a remoção da subarvore esquerda
+
+  if(x > p->entry) remove(x, p->rightNode); //x > do que p->entry - tentar a remoção da subarvore direita
+
+  //achei - prosseguir com a remoção
+  TreePointer q;
+  p = q;
+
+  if(q->leftNode == NULL){ //Caso A
+    p = q->rightNode;
+  } 
+
+  else{
+    if(q->rightNode == NULL){ //Caso B
+      p = q->rightNode;
+    }
+    else{ //Caso C.1
+      removeMin(q, q->rightNode);
+    } 
+    delete q;
+    return true;
+  }
+}
+
+void BinarySearchTree::removeMin(TreePointer &q, TreePointer &r){
+  if(r->leftNode != NULL) removeMin(q, r->leftNode);
+  else{
+    q->entry = r->entry;
+    q = r;
+    r = r->rightNode;
+  }
+}
